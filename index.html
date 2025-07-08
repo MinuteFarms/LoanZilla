@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loanzilla - Defeat Your Student Loan Monster!</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🐉</span>
+                <span class="logo-text">Loanzilla</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#battle" class="nav-link active">⚔️ Battle</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#loans" class="nav-link">💰 Loans</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#arsenal" class="nav-link">🎯 Arsenal</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#progress" class="nav-link">📊 Progress</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#leaderboard" class="nav-link">🏆 Leaderboard</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Battle Arena Section -->
+    <section id="battle" class="battle-arena">
+        <div class="arena-container">
+            <!-- Battle HUD -->
+            <div class="battle-hud">
+                <div class="player-info">
+                    <div class="level-display">
+                        <span class="level-label">Level</span>
+                        <span class="level-number" id="player-level">1</span>
+                        <span class="level-title" id="player-title">Intern Avenger</span>
+                    </div>
+                    <div class="xp-bar">
+                        <div class="xp-fill" id="xp-fill"></div>
+                        <span class="xp-text" id="xp-text">0 / 100 XP</span>
+                    </div>
+                </div>
+                
+                <div class="monster-info">
+                    <div class="monster-hp">
+                        <span class="hp-label">Loanzilla HP</span>
+                        <div class="hp-bar">
+                            <div class="hp-fill" id="monster-hp-fill"></div>
+                        </div>
+                        <span class="hp-text" id="monster-hp-text">100,000 / 100,000</span>
+                    </div>
+                    <div class="daily-growth">
+                        <span class="growth-label">Daily Growth</span>
+                        <span class="growth-amount" id="daily-growth">+$15.23</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Battle Field -->
+            <div class="battle-field">
+                <div class="loanzilla-monster" id="loanzilla-monster">
+                    <div class="monster-body">
+                        <div class="monster-head">🐉</div>
+                        <div class="monster-torso">
+                            <!-- Loan orbs will be positioned here -->
+                            <div class="loan-orb" data-loan-id="1" style="top: 20%; left: 30%;">
+                                <div class="orb-glow"></div>
+                                <div class="orb-tooltip">
+                                    <div class="tooltip-content">
+                                        <h4>Federal Direct Dragon</h4>
+                                        <p>Balance: $25,000</p>
+                                        <p>Rate: 5.5%</p>
+                                        <p>Daily: +$3.77</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="loan-orb" data-loan-id="2" style="top: 60%; left: 70%;">
+                                <div class="orb-glow"></div>
+                                <div class="orb-tooltip">
+                                    <div class="tooltip-content">
+                                        <h4>Private Student Serpent</h4>
+                                        <p>Balance: $15,000</p>
+                                        <p>Rate: 7.2%</p>
+                                        <p>Daily: +$2.96</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="monster-health-bar">
+                        <div class="health-fill" id="health-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Throwing Zone -->
+                <div class="throwing-zone" id="throwing-zone">
+                    <div class="throw-trajectory" id="throw-trajectory"></div>
+                </div>
+            </div>
+
+            <!-- Arsenal Panel -->
+            <div class="arsenal-panel">
+                <div class="arsenal-header">
+                    <h3>🎯 Your Arsenal</h3>
+                    <div class="arsenal-tabs">
+                        <button class="tab-btn active" data-tab="free">Free</button>
+                        <button class="tab-btn" data-tab="premium">Premium</button>
+                    </div>
+                </div>
+                
+                <div class="arsenal-content">
+                    <!-- Free Items -->
+                    <div class="item-grid active" id="free-items">
+                        <div class="item-card" data-item="soggy-sock" data-damage="100">
+                            <div class="item-icon">🧦</div>
+                            <div class="item-name">Soggy Sock</div>
+                            <div class="item-damage">100 HP</div>
+                            <div class="item-availability">Daily Free</div>
+                        </div>
+                        <div class="item-card" data-item="rotten-tomato" data-damage="200">
+                            <div class="item-icon">🍅</div>
+                            <div class="item-name">Rotten Tomato</div>
+                            <div class="item-damage">200 HP</div>
+                            <div class="item-availability">Watch Ad</div>
+                        </div>
+                        <div class="item-card" data-item="alarm-clock" data-damage="0" data-effect="stun">
+                            <div class="item-icon">⏰</div>
+                            <div class="item-name">Noisy Alarm</div>
+                            <div class="item-damage">Stuns Zilla</div>
+                            <div class="item-availability">Daily Streak</div>
+                        </div>
+                        <div class="item-card" data-item="penny" data-damage="1" data-repeatable="true">
+                            <div class="item-icon">🪙</div>
+                            <div class="item-name">Petty Penny</div>
+                            <div class="item-damage">1 HP</div>
+                            <div class="item-availability">Tap to Spam</div>
+                        </div>
+                    </div>
+
+                    <!-- Premium Items -->
+                    <div class="item-grid" id="premium-items">
+                        <div class="item-card premium" data-item="budget-brick" data-damage="1000" data-cost="0.99">
+                            <div class="item-icon">🧱</div>
+                            <div class="item-name">Budget Brick</div>
+                            <div class="item-damage">1,000 HP</div>
+                            <div class="item-cost">$0.99</div>
+                        </div>
+                        <div class="item-card premium" data-item="credit-shredder" data-damage="7500" data-cost="4.99">
+                            <div class="item-icon">✂️</div>
+                            <div class="item-name">Credit Shredder</div>
+                            <div class="item-damage">7,500 HP</div>
+                            <div class="item-cost">$4.99</div>
+                        </div>
+                        <div class="item-card premium" data-item="debt-nuke" data-damage="30000" data-cost="19.99">
+                            <div class="item-icon">💥</div>
+                            <div class="item-name">Debt Nuke</div>
+                            <div class="item-damage">30,000 HP</div>
+                            <div class="item-cost">$19.99</div>
+                        </div>
+                        <div class="item-card premium" data-item="refund-meteor" data-damage="80000" data-cost="49.99">
+                            <div class="item-icon">☄️</div>
+                            <div class="item-name">Refund Meteor</div>
+                            <div class="item-damage">80,000 HP</div>
+                            <div class="item-cost">$49.99</div>
+                        </div>
+                        <div class="item-card premium" data-item="rain-benjamins" data-damage="real" data-cost="variable">
+                            <div class="item-icon">💸</div>
+                            <div class="item-name">Rain of Benjamins</div>
+                            <div class="item-damage">Real Impact</div>
+                            <div class="item-cost">Variable</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loans Management Section -->
+    <section id="loans" class="loans-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">💰 Your Loan Army</h2>
+                <button class="btn btn-primary" onclick="openAddLoanModal()">
+                    <i class="fas fa-plus"></i> Recruit New Loan
+                </button>
+            </div>
+            
+            <div class="loans-grid" id="loans-grid">
+                <!-- Loans will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Arsenal & Tools Section -->
+    <section id="arsenal" class="arsenal-section">
+        <div class="container">
+            <h2 class="section-title">🎯 Arsenal & Tools</h2>
+            
+            <div class="tools-grid">
+                <div class="tool-card unlocked" data-tool="sock-launcher">
+                    <div class="tool-icon">🧦</div>
+                    <div class="tool-info">
+                        <h3>Sock Launcher</h3>
+                        <p>Fires 3 socks simultaneously</p>
+                        <div class="tool-stats">
+                            <span class="stat">Damage: 300 HP</span>
+                            <span class="stat">Range: Medium</span>
+                        </div>
+                    </div>
+                    <div class="tool-status">Unlocked</div>
+                </div>
+                
+                <div class="tool-card locked" data-tool="tshirt-cannon" data-level="2">
+                    <div class="tool-icon">👕</div>
+                    <div class="tool-info">
+                        <h3>T-Shirt Cannon</h3>
+                        <p>Fires 5 items with higher spread</p>
+                        <div class="tool-stats">
+                            <span class="stat">Damage: 500 HP</span>
+                            <span class="stat">Range: Long</span>
+                        </div>
+                    </div>
+                    <div class="tool-status">Level 2 Required</div>
+                </div>
+                
+                <div class="tool-card locked" data-tool="ramen-blaster" data-level="5">
+                    <div class="tool-icon">🍜</div>
+                    <div class="tool-info">
+                        <h3>Ramen Blaster</h3>
+                        <p>Splashes damage across multiple zones</p>
+                        <div class="tool-stats">
+                            <span class="stat">Damage: 800 HP</span>
+                            <span class="stat">Area: Wide</span>
+                        </div>
+                    </div>
+                    <div class="tool-status">Level 5 Required</div>
+                </div>
+                
+                <div class="tool-card locked" data-tool="knights-gauntlet" data-level="7">
+                    <div class="tool-icon">⚔️</div>
+                    <div class="tool-info">
+                        <h3>Knight's Gauntlet</h3>
+                        <p>Launches flaming orbs</p>
+                        <div class="tool-stats">
+                            <span class="stat">Damage: 1500 HP</span>
+                            <span class="stat">Effect: Burning</span>
+                        </div>
+                    </div>
+                    <div class="tool-status">Level 7 Required</div>
+                </div>
+                
+                <div class="tool-card locked" data-tool="diamond-destroyer" data-level="9">
+                    <div class="tool-icon">💎</div>
+                    <div class="tool-info">
+                        <h3>Diamond Debt Destroyer</h3>
+                        <p>Meteor of paper invoices</p>
+                        <div class="tool-stats">
+                            <span class="stat">Damage: 5000 HP</span>
+                            <span class="stat">Effect: Massive</span>
+                        </div>
+                    </div>
+                    <div class="tool-status">Level 9 Required</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress & Stats Section -->
+    <section id="progress" class="progress-section">
+        <div class="container">
+            <h2 class="section-title">📊 Battle Progress</h2>
+            
+            <div class="progress-grid">
+                <div class="progress-card">
+                    <h3>🏆 Achievements</h3>
+                    <div class="achievements-list" id="achievements-list">
+                        <div class="achievement unlocked">
+                            <div class="achievement-icon">🎯</div>
+                            <div class="achievement-info">
+                                <h4>First Strike</h4>
+                                <p>Deal your first damage to Loanzilla</p>
+                            </div>
+                        </div>
+                        <div class="achievement locked">
+                            <div class="achievement-icon">⚡</div>
+                            <div class="achievement-info">
+                                <h4>Lightning Striker</h4>
+                                <p>Deal 10,000 damage in one session</p>
+                            </div>
+                        </div>
+                        <div class="achievement locked">
+                            <div class="achievement-icon">🎖️</div>
+                            <div class="achievement-info">
+                                <h4>Debt Destroyer</h4>
+                                <p>Reduce a loan balance by 50%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="progress-card">
+                    <h3>📈 Battle Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Damage Dealt</span>
+                            <span class="stat-value" id="total-damage">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Items Thrown</span>
+                            <span class="stat-value" id="items-thrown">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Accuracy</span>
+                            <span class="stat-value" id="accuracy">0%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Battle Time</span>
+                            <span class="stat-value" id="battle-time">0h 0m</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="leaderboard-section">
+        <div class="container">
+            <h2 class="section-title">🏆 Top Destroyers</h2>
+            
+            <div class="leaderboard-container">
+                <div class="leaderboard-tabs">
+                    <button class="tab-btn active" data-tab="global">Global</button>
+                    <button class="tab-btn" data-tab="friends">Friends</button>
+                    <button class="tab-btn" data-tab="weekly">This Week</button>
+                </div>
+                
+                <div class="leaderboard-content">
+                    <div class="leaderboard-list active" id="global-leaderboard">
+                        <div class="leaderboard-item top-1">
+                            <div class="rank">1</div>
+                            <div class="player-info">
+                                <div class="player-name">DebtDestroyer99</div>
+                                <div class="player-level">Level 9 - Ultimate Knight</div>
+                            </div>
+                            <div class="player-score">2,847,392 HP</div>
+                        </div>
+                        <div class="leaderboard-item top-2">
+                            <div class="rank">2</div>
+                            <div class="player-info">
+                                <div class="player-name">LoanSlayer</div>
+                                <div class="player-level">Level 8 - Destroyer</div>
+                            </div>
+                            <div class="player-score">1,923,847 HP</div>
+                        </div>
+                        <div class="leaderboard-item top-3">
+                            <div class="rank">3</div>
+                            <div class="player-info">
+                                <div class="player-name">FinancialFreedom</div>
+                                <div class="player-level">Level 7 - Debt Ender</div>
+                            </div>
+                            <div class="player-score">1,456,234 HP</div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div class="rank">4</div>
+                            <div class="player-info">
+                                <div class="player-name">You</div>
+                                <div class="player-level">Level 1 - Intern Avenger</div>
+                            </div>
+                            <div class="player-score">0 HP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Loan Modal -->
+    <div class="modal" id="add-loan-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🐉 Recruit New Loan Monster</h3>
+                <button class="modal-close" onclick="closeAddLoanModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="add-loan-form">
+                <div class="form-group">
+                    <label for="loan-name">Monster Name:</label>
+                    <input type="text" id="loan-name" required placeholder="e.g., Federal Direct Dragon">
+                </div>
+                <div class="form-group">
+                    <label for="loan-balance">Monster Size ($):</label>
+                    <input type="number" id="loan-balance" required placeholder="25000" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="loan-rate">Monster Power (%):</label>
+                    <input type="number" id="loan-rate" required placeholder="5.5" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="loan-payment">Your Weapon ($):</label>
+                    <input type="number" id="loan-payment" placeholder="280" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="loan-due-date">Next Battle Date:</label>
+                    <input type="date" id="loan-due-date">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddLoanModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Recruit Monster</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Purchase Confirmation Modal -->
+    <div class="modal" id="purchase-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>💳 Confirm Purchase</h3>
+                <button class="modal-close" onclick="closePurchaseModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="purchase-item">
+                    <div class="item-icon" id="purchase-icon">🧱</div>
+                    <div class="item-details">
+                        <h4 id="purchase-name">Budget Brick</h4>
+                        <p id="purchase-description">Deal 1,000 HP damage to Loanzilla</p>
+                    </div>
+                </div>
+                <div class="purchase-cost">
+                    <span class="cost-label">Cost:</span>
+                    <span class="cost-amount" id="purchase-cost">$0.99</span>
+                </div>
+                <div class="real-impact">
+                    <p>This purchase will help reduce your real student loan interest!</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closePurchaseModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="confirmPurchase()">Purchase</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
